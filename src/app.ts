@@ -1,6 +1,7 @@
 import { envs, logger } from "./config";
-import { Server } from "./server";
-import { AppRoutes } from "./routes/routes";
+import { CustomError } from "./domain";
+import { Server } from "./presentation/server";
+import { AppRoutes } from "./presentation/routes";
 
 (async () => {
     main();

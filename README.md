@@ -13,8 +13,8 @@ Make sure you have Node.js and npm installed on your system before proceeding.
 1. Clone this repository or download the source code.
 
 ```bash
-git clone https://github.com/No-Country/c15-43-typescript-react.git
-cd c15-43-typescript-react
+git clone https://github.com/Juudini/ddd-ts-template.git
+cd ddd-ts-template
 ```
 
 2. Install project dependencies.
