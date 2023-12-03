@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 // Winston
-import { logger } from "../config";
+import { logger } from "./config";
 
 interface Options {
     port: number;
