@@ -1,12 +1,39 @@
-import express, { Request, Response } from "express";
+import Express, { Router } from "express";
+import cors from "cors";
+import morgan from "morgan";
 
-const app: express.Application = express();
-const PORT = process.env.PORT || 3800;
+// Winston
+import { logger } from "./config";
 
-app.get("/", (req: Request, res: Response) => {
-    res.send(" Server-UP ");
-});
+interface Options {
+    port: number;
+    routes: Router;
+}
 
-app.listen(PORT, () => {
-    console.log(`Server is UP at http://localhost:${PORT}`);
-});
+export class Server {
+    public readonly app = Express();
+    private readonly port: number;
+    private readonly routes: Router;
+
+    constructor(options: Options) {
+        const { port = 3100, routes } = options;
+        this.port = port;
+        this.routes = routes;
+    }
+
+    async start() {
+        /* ★━━━━━━━━━━━★ Middlewares ★━━━━━━━━━━━★ */
+        this.app.use(cors());
+        this.app.use(morgan("dev"));
+        this.app.use(Express.json());
+        this.app.use(Express.urlencoded({ extended: true }));
+
+        /* ★━━━━━━━━━━━★ Routes ★━━━━━━━━━━━★ */
+        this.app.use(this.routes);
+
+        /* ★━━━━━━━━━━━★ Listener ★━━━━━━━━━━━★ */
+        this.app.listen(this.port, () => {
+            logger.info(`🚀 Server running on http://localhost:${this.port}.`);
+        });
+    }
+}

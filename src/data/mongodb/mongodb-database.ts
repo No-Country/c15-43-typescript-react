@@ -1,7 +1,7 @@
 import mongoose, { ConnectOptions } from "mongoose";
 
 async function connectToDB(): Promise<void> {
-    const uri: string = "mongodb+srv://marcos:asd123@cluster0.ji4yiq5.mongodb.net/";
+    const uri: string = envs.MONGODB_URI;
 
     const options: ConnectOptions = {
         useNewUrlParser: Boolean,
