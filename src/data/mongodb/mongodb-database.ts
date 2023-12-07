@@ -1,20 +1,20 @@
-import mongoose, { ConnectOptions } from "mongoose";
-
-async function connectToDB(): Promise<void> {
-    const uri: string = envs.MONGODB_URI;
-
-    const options: ConnectOptions = {
-        useNewUrlParser: Boolean,
-        useUnifiedTopology: Boolean
-    };
-
-    try {
-        await mongoose.connect(uri, options);
-
-        console.log("Conexión MongoDB");
-    } catch (err) {
-        console.error("Error al conectar con MongoDB", err);
-    }
+import { connect } from "mongoose";
+import { logger } from "../../config";
+interface Options {
+    mongoUrl: string;
+    dbName: string;
 }
 
-connectToDB();
+export class MongoDatabase {
+    static async connect(options: Options) {
+        const { mongoUrl, dbName } = options;
+        try {
+            await connect(mongoUrl, { dbName });
+            logger.info("🔌 DB connected");
+            return true;
+        } catch (err) {
+            logger.error("Error in MongoDB connect. Details: ", err);
+            throw err;
+        }
+    }
+}
