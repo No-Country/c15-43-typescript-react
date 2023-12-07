@@ -9,7 +9,7 @@ export class MongoDatabase {
     static async connect(options: Options) {
         const { mongoUrl, dbName } = options;
         try {
-            await connect(mongoUrl, { dbName:dbName });
+            await connect(mongoUrl, { dbName });
             logger.info("🔌 DB connected");
             return true;
         } catch (err) {
