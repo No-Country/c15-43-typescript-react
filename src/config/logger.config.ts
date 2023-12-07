@@ -1,4 +1,3 @@
-import { rootDirOverSrc } from "../domain";
 import { envs } from "./";
 import winston from "winston";
 
