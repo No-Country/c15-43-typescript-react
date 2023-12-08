@@ -33,7 +33,7 @@ export class Server {
 
         /* ★━━━━━━━━━━━★ Listener ★━━━━━━━━━━━★ */
         this.app.listen(this.port, () => {
-            logger.info(`🚀 Server running on port ${this.port}.`);
+            logger.info(`🚀 Server running on http://localhost:${this.port}.`);
         });
     }
 }

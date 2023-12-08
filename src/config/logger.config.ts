@@ -1,4 +1,4 @@
-import { rootDirOverSrc } from "../domain";
+import { rootDirOverSrc } from "../shared/path.util";
 import { envs } from "./";
 import winston from "winston";
 
